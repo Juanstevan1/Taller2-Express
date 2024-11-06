@@ -1,29 +1,38 @@
-const pokeneas = require('../models/pokeneaModel');
+const Pokenea = require('../models/pokenea');
+const { getRandomPokenea } = require('../util/pokeneaUtils');
 const os = require('os');
 
-
 function getRandomPokeneaJson(req, res) {
-    const randomPokenea = pokeneas[Math.floor(Math.random() * pokeneas.length)];
+    const randomPokenea =  getRandomPokenea();
     const containerId = os.hostname();
-    res.json({
-      id: randomPokenea.id,
-      name: randomPokenea.name,
-      height: randomPokenea.height,
-      ability: randomPokenea.ability,
-      containerId: containerId
-    });
-  }
+    const response = {
+        id: randomPokenea.getId(),
+        name: randomPokenea.getName(),
+        height: randomPokenea.getHeight(),
+        ability: randomPokenea.getAbility(),
+        containerId: containerId
+    };
+    res.json(response);
+}
 
 function getRandomPokeneaImage(req, res) {
-    const randomPokenea = pokeneas[Math.floor(Math.random() * pokeneas.length)];
+    const randomPokenea = getRandomPokenea();
     const containerId = os.hostname();
-    res.render('pokenea', {
-      name: randomPokenea.name,
-      image: randomPokenea.image,
-      phrase: randomPokenea.phrase,
-      containerId: containerId
-    });
-  }
+    const response = {
+        name: randomPokenea.getName(),
+        image: randomPokenea.getImage(),
+        phrase: randomPokenea.getPhilosophicalPhrase(),
+        containerId: containerId
+    };
+    res.render('pokenea', { viewData: response });
+}
 
+function homePage(req, res) {
+    res.render('index');
+}
 
-module.exports = { getRandomPokeneaJson, getRandomPokeneaImage };
+module.exports = {
+    getRandomPokeneaJson,
+    getRandomPokeneaImage,
+    homePage,
+};

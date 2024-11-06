@@ -1,17 +1,3 @@
-/**
- * An array of Pokenea objects, each representing a unique creature with specific attributes.
- * Each object contains the following properties:
- * 
- * @typedef {Object} Pokenea
- * @property {number} id - The unique identifier for the Pokenea.
- * @property {string} name - The name of the Pokenea.
- * @property {string} height - The height of the Pokenea, represented as a string with a unit of measurement.
- * @property {string} ability - The special ability of the Pokenea.
- * @property {string} image - The URL of the image representing the Pokenea.
- * @property {string} phrase - A unique phrase or motto associated with the Pokenea.
- */
-
-
 const pokeneas = [
     {
         id: 1,
